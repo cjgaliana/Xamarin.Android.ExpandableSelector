@@ -73,14 +73,14 @@ namespace Xamarin.Android.ExpandableSelector
             get { return this._expandableSelectorAnimator.IsExpanded; }
         }
 
-        public event EventHandler<ExpandableItem> ItemClick;
+        public event EventHandler<ExpandableItemClickEventArgs> ItemClick;
 
-        protected virtual void OnItemClick(ExpandableItem e)
+        protected virtual void OnItemClick(int index ,ExpandableItem item)
         {
-            EventHandler<ExpandableItem> handler = this.ItemClick;
+            EventHandler<ExpandableItemClickEventArgs> handler = this.ItemClick;
             if (handler != null)
             {
-                handler(this, e);
+                handler(this, new ExpandableItemClickEventArgs(index, item));
             }
         }
 
@@ -306,7 +306,7 @@ namespace Xamarin.Android.ExpandableSelector
                     else
                     {
                         var button = s as View;
-                        this.OnItemClick(this.ExpandableItems[numberOfButtons - 1]);
+                        this.OnItemClick(0, this.ExpandableItems[numberOfButtons - 1]);
                     }
                 };
             }
@@ -317,7 +317,7 @@ namespace Xamarin.Android.ExpandableSelector
                 this._buttons[i].Click += (s, e) =>
                 {
                     int buttonIndex = numberOfButtons - 1 - buttonPosition;
-                    this.OnItemClick(this.ExpandableItems[buttonIndex]);
+                    this.OnItemClick(buttonIndex, this.ExpandableItems[buttonIndex]);
                 };
             }
         }
@@ -389,6 +389,18 @@ namespace Xamarin.Android.ExpandableSelector
                     this.GetChildAt(i).BringToFront();
                 }
             }
+        }
+    }
+
+    public class ExpandableItemClickEventArgs : EventArgs
+    {
+        public int Index { get; private set; }
+        public ExpandableItem Item { get; private set; }
+
+        public ExpandableItemClickEventArgs(int index, ExpandableItem item)
+        {
+            this.Index = index;
+            this.Item = item;
         }
     }
 }

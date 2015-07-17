@@ -10,8 +10,8 @@ namespace Xamarin.Android.ExpandableSelector
         private const int NO_ID = -1;
 
         public string Title { get; set; }
-        public int ResourceId { get; private set; }
-        public int BackgroundId { get; private set; }
+        public int ResourceId { get;  set; }
+        public int BackgroundId { get; set; }
 
         public ExpandableItem()
             : this(NO_ID, null)

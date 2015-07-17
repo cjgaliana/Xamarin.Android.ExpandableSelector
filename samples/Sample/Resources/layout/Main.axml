@@ -12,7 +12,7 @@
         android:text="@string/collapse_button_text"
         android:layout_centerInParent="true" />
 <!-- SIZES EXPANDABLE SELECTOR -->
-    <XExpandableSelector.ExpandableSelector
+    <Xamarin.Android.ExpandableSelector.ExpandableSelector
         android:id="@+id/es_sizes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
         android:layout_alignParentLeft="true"
         android:layout_margin="@dimen/expandable_selector_margin" />
 <!-- ICONS EXPANDABLE SELECTOR -->
-    <XExpandableSelector.ExpandableSelector
+    <Xamarin.Android.ExpandableSelector.ExpandableSelector
         android:id="@+id/es_icons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
         expandable_selector:collapse_interpolator="@android:anim/decelerate_interpolator"
         expandable_selector:animation_duration="@integer/slow_custom_animation_duration" />
 <!-- COLORS EXPANDABLE SELECTOR -->
-    <XExpandableSelector.ExpandableSelector
+    <Xamarin.Android.ExpandableSelector.ExpandableSelector
         android:id="@+id/es_colors"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -47,5 +47,5 @@
             android:id="@+id/bt_colors"
             android:text="@string/colors_expandable_selector_title"
             style="@style/ExpandableItemStyleHeader" />
-    </XExpandableSelector.ExpandableSelector>
+    </Xamarin.Android.ExpandableSelector.ExpandableSelector>
 </RelativeLayout>

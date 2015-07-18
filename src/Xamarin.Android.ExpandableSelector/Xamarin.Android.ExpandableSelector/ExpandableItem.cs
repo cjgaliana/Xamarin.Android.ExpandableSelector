@@ -32,6 +32,7 @@ namespace Xamarin.Android.ExpandableSelector
         {
             this.BackgroundId = backgroundId;
             this.Title = title;
+            this.ResourceId = NO_ID;
         }
 
         public bool HasResourceId()

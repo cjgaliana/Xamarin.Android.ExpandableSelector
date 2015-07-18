@@ -201,7 +201,7 @@ namespace Xamarin.Android.ExpandableSelector
             this.ExpandableItems.RemoveAt(expandableItemPosition);
             this.ExpandableItems.Insert(expandableItemPosition, expandableItem);
             int buttonPosition = this._buttons.Count - 1 - expandableItemPosition;
-            this.configureButtonContent(this._buttons[buttonPosition], expandableItem);
+            this.ConfigureButtonContent(this._buttons[buttonPosition], expandableItem);
         }
 
         private void InitializeView(IAttributeSet attrs)
@@ -286,7 +286,7 @@ namespace Xamarin.Android.ExpandableSelector
                 this.AddView(button);
                 this._buttons.Add(button);
                 this._expandableSelectorAnimator.InitializeButton(button);
-                this.configureButtonContent(button, this.ExpandableItems[i]);
+                this.ConfigureButtonContent(button, this.ExpandableItems[i]);
             }
             this._expandableSelectorAnimator.Buttons = this._buttons;
         }
@@ -324,36 +324,57 @@ namespace Xamarin.Android.ExpandableSelector
 
         private View InitializeButton(int expandableItemPosition)
         {
-            ExpandableItem expandableItem = this.ExpandableItems[expandableItemPosition];
-            View button = null;
+            try
+            {
+                ExpandableItem expandableItem = this.ExpandableItems[expandableItemPosition];
+                View button = null;
 
-            LayoutInflater layoutInflater = LayoutInflater.From(this.Context);
-            button =
-                layoutInflater.Inflate(
-                    expandableItem.HasTitle()
-                        ? Resource.Layout.expandable_item_button
-                        : Resource.Layout.expandable_item_image_button,
-                    this, false);
+                LayoutInflater layoutInflater = LayoutInflater.From(this.Context);
+                button =
+                    layoutInflater.Inflate(
+                        expandableItem.HasTitle()
+                            ? Resource.Layout.expandable_item_button
+                            : Resource.Layout.expandable_item_image_button,
+                        this, false);
 
-            button.Visibility = expandableItemPosition == 0 ? ViewStates.Visible : ViewStates.Invisible;
-            return button;
+       
+                button.Visibility = expandableItemPosition == 0 
+                    ? ViewStates.Visible 
+                    : ViewStates.Invisible;
+
+                return button;
+            }
+            catch (Exception ex)
+            {
+                var error = ex.Message;
+                throw;
+            }
         }
 
-        private void configureButtonContent(View button, ExpandableItem expandableItem)
+        public void ConfigureButtonContent(View view, ExpandableItem expandableItem)
         {
             if (expandableItem.HasBackgroundId())
             {
                 int backgroundId = expandableItem.BackgroundId;
-                button.SetBackgroundResource(backgroundId);
+                view.SetBackgroundResource(backgroundId);
             }
             if (expandableItem.HasTitle())
             {
+                var button = view as Button;
+                if (button==null)
+                {
+                    return;
+                }
                 string text = expandableItem.Title;
-                ((Button)button).Text = text;
+                button.Text = text;
             }
             if (expandableItem.HasResourceId())
             {
-                var imageButton = (ImageButton)button;
+                var imageButton = view as ImageButton;
+                if (imageButton== null)
+                {
+                    return;
+                }
                 int resourceId = expandableItem.ResourceId;
                 imageButton.SetImageResource(resourceId);
             }

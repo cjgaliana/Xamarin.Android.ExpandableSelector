@@ -219,17 +219,32 @@ namespace Xamarin.Android.ExpandableSelector.Animation
 
         private ITimeInterpolator GetExpandAnimatorInterpolation()
         {
-            return AnimationUtils.LoadInterpolator(this._container.Context, this._expandInterpolatorId);
+			try {
+				return AnimationUtils.LoadInterpolator(this._container.Context, this._expandInterpolatorId);
+
+			} catch (Exception ex) {
+				return null;
+			}
         }
 
         private ITimeInterpolator GetCollapseAnimatorInterpolation()
         {
-            return AnimationUtils.LoadInterpolator(this._container.Context, this._collapseInterpolatorId);
+			try {
+				return AnimationUtils.LoadInterpolator(this._container.Context, this._collapseInterpolatorId);
+
+			} catch (Exception ex) {
+				return null;
+			}
         }
 
         private IInterpolator GetContainerAnimationInterpolator()
         {
-            return AnimationUtils.LoadInterpolator(this._container.Context, this._containerInterpolatorId);
+			try {
+				return AnimationUtils.LoadInterpolator(this._container.Context, this._containerInterpolatorId);
+
+			} catch (Exception ex) {
+				return null;
+			}
         }
 
         private int GetSumHeight()

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Android.App;
 using Android.OS;
 using Android.Views;
@@ -10,15 +11,15 @@ namespace Sample
     [Activity(Label = "Sample", MainLauncher = true, Icon = "@drawable/icon", Theme = "@android:style/Theme.Holo.Light")]
     public class MainActivity : Activity
     {
-        //private ExpandableSelector ColorsExpandableSelector
-        //{
-        //    get { return (ExpandableSelector)this.FindViewById(Resource.Id.es_colors); }
-        //}
+        private ExpandableSelector ColorsExpandableSelector
+        {
+            get { return (ExpandableSelector)this.FindViewById(Resource.Id.es_colors); }
+        }
 
-        //private View ColorsHeaderButton
-        //{
-        //    get { return this.FindViewById(Resource.Id.bt_colors); }
-        //}
+        private View ColorsHeaderButton
+        {
+            get { return this.FindViewById(Resource.Id.bt_colors); }
+        }
 
         //private ExpandableSelector IconsExpandableSelector
         //{
@@ -41,53 +42,53 @@ namespace Sample
 
             this.SetContentView(Resource.Layout.Main);
 
-            //this.InitializeColorsExpandableSelector();
+            this.InitializeColorsExpandableSelector();
             this.InitializeSizesExpandableSelector();
             //this.InitializeIconsExpandableSelector();
             this.InitializeCloseAllButton();
         }
 
-        //private void InitializeColorsExpandableSelector()
-        //{
-        //    var expandableItems = new List<ExpandableItem>
-        //    {
-        //        new ExpandableItem(Resource.Drawable.item_brown),
-        //        new ExpandableItem(Resource.Drawable.item_green),
-        //        new ExpandableItem(Resource.Drawable.item_orange),
-        //        new ExpandableItem(Resource.Drawable.item_pink)
-        //    };
-        //    this.ColorsExpandableSelector.ShowExpandableItems(expandableItems);
+        private void InitializeColorsExpandableSelector()
+        {
+            var expandableItems = new List<ExpandableItem>
+            {
+                new ExpandableItem(Resource.Drawable.item_brown),
+                new ExpandableItem(Resource.Drawable.item_green),
+                new ExpandableItem(Resource.Drawable.item_orange),
+                new ExpandableItem(Resource.Drawable.item_pink)
+            };
+            this.ColorsExpandableSelector.ShowExpandableItems(expandableItems);
 
-        //    this.ColorsHeaderButton.Click += delegate
-        //    {
-        //        this.ColorsHeaderButton.Visibility = ViewStates.Visible;
-        //        this.ColorsExpandableSelector.Expand();
-        //    };
+            this.ColorsHeaderButton.Click += delegate
+            {
+                this.ColorsHeaderButton.Visibility = ViewStates.Visible;
+                this.ColorsExpandableSelector.Expand();
+            };
 
-        //    this.ColorsExpandableSelector.ItemClick += (s, e) =>
-        //    {
-        //        switch (e.Index)
-        //        {
-        //            case 0:
-        //                this.ColorsHeaderButton.SetBackgroundResource(Resource.Drawable.item_brown);
-        //                break;
+            this.ColorsExpandableSelector.ItemClick += (s, e) =>
+            {
+                switch (e.Index)
+                {
+                    case 0:
+                        this.ColorsHeaderButton.SetBackgroundResource(Resource.Drawable.item_brown);
+                        break;
 
-        //            case 1:
-        //                this.ColorsHeaderButton.SetBackgroundResource(Resource.Drawable.item_green);
-        //                break;
+                    case 1:
+                        this.ColorsHeaderButton.SetBackgroundResource(Resource.Drawable.item_green);
+                        break;
 
-        //            case 2:
-        //                this.ColorsHeaderButton.SetBackgroundResource(Resource.Drawable.item_orange);
-        //                break;
+                    case 2:
+                        this.ColorsHeaderButton.SetBackgroundResource(Resource.Drawable.item_orange);
+                        break;
 
-        //            default:
-        //                this.ColorsHeaderButton.SetBackgroundResource(Resource.Drawable.item_pink);
-        //                break;
-        //        }
+                    default:
+                        this.ColorsHeaderButton.SetBackgroundResource(Resource.Drawable.item_pink);
+                        break;
+                }
 
-        //        this.ColorsExpandableSelector.Collapse();
-        //    };
-        //}
+                this.ColorsExpandableSelector.Collapse();
+            };
+        }
 
         private void InitializeSizesExpandableSelector()
         {
@@ -102,23 +103,32 @@ namespace Sample
 
             this.SizesExpandableSelector.ItemClick += (s, e) =>
             {
-                switch (e.Index)
+                try
                 {
-                    case 1:
-                        ExpandableItem firstItem = this.SizesExpandableSelector.ExpandableItems[1];
-                        this.SwipeFirstItem(1, firstItem);
-                        break;
+                    switch (e.Index)
+                    {
+                        case 1:
+                            ExpandableItem firstItem = this.SizesExpandableSelector.ExpandableItems[1];
+                            this.SwipeFirstItem(1, firstItem);
+                            break;
 
-                    case 2:
-                        ExpandableItem secondItem = this.SizesExpandableSelector.ExpandableItems[2];
-                        this.SwipeFirstItem(2, secondItem);
-                        break;
+                        case 2:
+                            ExpandableItem secondItem = this.SizesExpandableSelector.ExpandableItems[2];
+                            this.SwipeFirstItem(2, secondItem);
+                            break;
 
-                    case 3:
-                        ExpandableItem fourthItem = this.SizesExpandableSelector.ExpandableItems[3];
-                        this.SwipeFirstItem(3, fourthItem);
-                        break;
+                        case 3:
+                            ExpandableItem fourthItem = this.SizesExpandableSelector.ExpandableItems[3];
+                            this.SwipeFirstItem(3, fourthItem);
+                            break;
+                    }
                 }
+                catch (Exception ex)
+                {
+                    
+                    throw;
+                }
+               
 
                 this.SizesExpandableSelector.Collapse();
             };

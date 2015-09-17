@@ -301,7 +301,16 @@ namespace Xamarin.Android.ExpandableSelector
                 {
                     if (this.IsCollapsed)
                     {
-                        this.Expand();
+                        try
+                        {
+                            this.Expand();
+
+                        }
+                        catch (Exception ex)
+                        {
+                            
+                            throw;
+                        }
                     }
                     else
                     {

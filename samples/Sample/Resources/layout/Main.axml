@@ -33,7 +33,7 @@
         expandable_selector:collapse_interpolator="@android:anim/decelerate_interpolator"
         expandable_selector:animation_duration="@integer/slow_custom_animation_duration" />-->
 <!--COLORS EXPANDABLE SELECTOR-->
-<!--<Xamarin.Android.ExpandableSelector.ExpandableSelector
+    <Xamarin.Android.ExpandableSelector.ExpandableSelector
         android:id="@+id/es_colors"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -47,5 +47,5 @@
             android:id="@+id/bt_colors"
             android:text="@string/colors_expandable_selector_title"
             style="@style/ExpandableItemStyleHeader" />
-    </Xamarin.Android.ExpandableSelector.ExpandableSelector>-->
+    </Xamarin.Android.ExpandableSelector.ExpandableSelector>
 </RelativeLayout>

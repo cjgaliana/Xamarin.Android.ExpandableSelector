@@ -138,12 +138,20 @@ namespace Xamarin.Android.ExpandableSelector.Animation
             IInterpolator interpolator = this.GetContainerAnimationInterpolator();
 
             ResizeAnimation resizeAnimation = this.CreateResizeAnimation(toWidth, interpolator, toHeight);
-            this._container.Animation.AnimationEnd += delegate
-            {
-                this.ChangeButtonsVisibility(ViewStates.Visible);
-                this.OnAnimationFinished();
-            };
+  
+
+       
+
             this._container.StartAnimation(resizeAnimation);
+
+            if (this._container.Animation != null)
+            {
+                this._container.Animation.AnimationEnd += delegate
+                {
+                    this.ChangeButtonsVisibility(ViewStates.Visible);
+                    this.OnAnimationFinished();
+                };
+            }
         }
 
         private void CollapseContainer()
@@ -154,13 +162,25 @@ namespace Xamarin.Android.ExpandableSelector.Animation
 
             ResizeAnimation resizeAnimation = this.CreateResizeAnimation(toWidth, interpolator, toHeight);
 
-            this._container.Animation.AnimationEnd += delegate
+            if (this._container.Animation != null)
             {
-                this.ChangeButtonsVisibility(ViewStates.Invisible);
-                this.OnAnimationFinished();
-            };
-
+                this._container.Animation.AnimationEnd += delegate
+                {
+                    this.ChangeButtonsVisibility(ViewStates.Invisible);
+                    this.OnAnimationFinished();
+                };
+            }
             this._container.StartAnimation(resizeAnimation);
+            
+
+            if (this._container.Animation != null)
+            {
+                this._container.Animation.AnimationEnd += delegate
+                {
+                    this.ChangeButtonsVisibility(ViewStates.Invisible);
+                    this.OnAnimationFinished();
+                };
+            }
         }
 
         private ObjectAnimator CreateAnimatorForButton(ITimeInterpolator interpolator, View button, float toY)

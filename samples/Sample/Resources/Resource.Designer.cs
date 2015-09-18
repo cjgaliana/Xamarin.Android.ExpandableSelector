@@ -189,11 +189,14 @@ namespace Sample
 			// aapt resource value: 0x7f0a0000
 			public const int bt_close = 2131361792;
 			
+			// aapt resource value: 0x7f0a0004
+			public const int bt_colors = 2131361796;
+			
 			// aapt resource value: 0x7f0a0003
-			public const int bt_colors = 2131361795;
+			public const int es_colors = 2131361795;
 			
 			// aapt resource value: 0x7f0a0002
-			public const int es_colors = 2131361794;
+			public const int es_icons = 2131361794;
 			
 			// aapt resource value: 0x7f0a0001
 			public const int es_sizes = 2131361793;
